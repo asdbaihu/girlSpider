@@ -17,7 +17,7 @@ public class ImagePipeline implements Pipeline {
         }
         String title = resultItems.get("title").toString();
         String name = StringUtils.substring(url, StringUtils.lastIndexOf(url, "/") + 1);
-        int group = title.hashCode() % 100;
+        int group = Math.abs(title.hashCode() % 100);
         System.out.println("正在下载：" + url);
         try {
             String path = "C:\\Users\\kimi\\Desktop\\girl\\" + group + "\\" + title + "\\" + name;
