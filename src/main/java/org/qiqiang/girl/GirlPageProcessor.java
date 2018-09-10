@@ -27,7 +27,7 @@ public class GirlPageProcessor implements PageProcessor {
         //专辑页
         List<String> urls = page.getHtml().links().regex("http://www\\.27270\\.com/ent/meinvtupian/\\d+/\\w+\\.html").all();
         String articleV4BodyString = page.getHtml().css("div.articleV4Body").toString();
-        if (StringUtils.isNotBlank(articleV4BodyString)){
+        if (StringUtils.isNotBlank(articleV4BodyString)) {
             Document meinvTuPianBox = Jsoup.parse(articleV4BodyString);
             Elements img = meinvTuPianBox.getElementsByTag("p").get(0).getElementsByTag("img");
             String url = img.attr("src");
@@ -40,15 +40,5 @@ public class GirlPageProcessor implements PageProcessor {
 
     public Site getSite() {
         return site;
-    }
-
-    public static void main(String[] args) {
-        Spider.create(new GirlPageProcessor())
-                //美女图片首页
-                .addUrl("http://www.27270.com/ent/meinvtupian/")
-                .addPipeline(new ImagePipeline())
-                //开启十个线程
-                .thread(10)
-                .run();
     }
 }

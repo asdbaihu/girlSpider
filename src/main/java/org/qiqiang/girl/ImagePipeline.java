@@ -9,6 +9,9 @@ import us.codecraft.webmagic.pipeline.Pipeline;
 import java.io.File;
 import java.net.URL;
 
+/**
+ * 保存图片
+ */
 public class ImagePipeline implements Pipeline {
     public void process(ResultItems resultItems, Task task) {
         String url = resultItems.get("url").toString();
@@ -20,7 +23,7 @@ public class ImagePipeline implements Pipeline {
         int group = Math.abs(title.hashCode() % 100);
         System.out.println("正在下载：" + url);
         try {
-            String path = "C:\\Users\\kimi\\Desktop\\girl\\" + group + "\\" + title + "\\" + name;
+            String path = Properties.path + "\\girl\\" + group + "\\" + title + "\\" + name;
             File file = new File(path);
             if (file.exists()) {
                 System.out.println(path + "文件已存在");
